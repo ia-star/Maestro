@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width"/>
+        <title>Maestro </title>
+        <meta name="author" content="Deniz" />
+        <!-- Date: 2020-04-10 -->
+    </head>
+    <style>
+        html,body {
+        background-color: black;
+        max-height: 100vh;
+        overflow: auto;
+        }
+
+        input, textarea, select, option {
+            background-color:#FFF3F3;
+            font-size: 10px;
+        }	
+        .baslik{color:white; 
+        width:100vw;
+        height:6vh;
+        background-color:#2c2c2c;
+        border-color: #FFF3F3;border-width: 4px;
+        color:#b7b7b7;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 14px;
+        }
+        .content {color:white;}
+
+       .klasik{
+        background-image: url("klasik_musik.png");
+        width:100vw;
+        height:20vh;
+        background-size: cover;
+        border-color: #FFF3F3; border-width: 4px;
+        color:#b7b7b7;
+        margin-top: 10px;
+        } 
+        .jazz{
+             background-image: url("saxo.jpg");
+        width:100vw;
+        height:20vh;
+        border-color: #FFF3F3; border-width: 4px;
+        color:#b7b7b7;
+        margin-top: 10px;
+background-size: cover;
+        }
+
+        .turk{
+            background-image: url("ud.jpg");
+            
+        width:100vw;
+        height:20vh;
+        border-color: #FFF3F3; border-width: 4px;
+        color:#b7b7b7;
+        margin-top: 10px;
+background-size: cover;
+        }
+        .nature{
+            background-image: url("nature.jpg");
+        width:100vw;
+        height:20vh;
+        border-color: #FFF3F3; border-width: 4px;
+        color:#b7b7b7;
+        margin-top: 10px;
+background-size: cover;
+        }
+
+#yayin {display: flex; }
+
+.icon {
+    font-size: 1.2em;
+  }
+#copyright{
+ 	font-size:10px;
+ 	color:grey;
+ 	font-style: italic;
+ }
+    </style>
+
+<body>
+      
+<div  class="baslik" id="baslik>">
+<img id="shutdown-bt" src="shutdown.png" onclick="shutdown();"  alt="Shutdown Icon" width="22" style="vertical-align:middle; cursor:pointer" title=" çalmakta olan müzigi kapat" ">
+&nbsp;&nbsp;<img id="sleeping-bt" src="sleeping.png" onclick="muzik_ayari();"  alt="Shutdown Icon" width="22" style="vertical-align:middle; cursor:pointer" title=" Müzikle uyu" ">
+&nbsp;&nbsp;<span id="hosgeldiniz"> Kozeri Müziğe hoşgeldiniz. </span>
+
+
+
+
+
+<div> <button id="uyku" onclick="muzik_ayari();" style="background-color: #c94554; transform: scale(0.8); cursor:pointer;display:none"> Müzikle uyu</button>
+  <select id="timerSelect" style="display:none;">
+     <option value="5">5  dakka müzik</option>
+    <option value="10">10 dakka müzik</option>
+    <option value="20">20 dakka müzik</optidakkaon>
+    <option value="30" selected>30 dakka müzik</option>
+    <option value="45">45 dakka müzik</option>
+    <option value="60">60 dakka müzik</option>
+  </select>
+
+  <button id="timeSelect_button" onclick="startSleepTimer()" style = "display:none; transform: scale(0.8);"">Tamam</button>
+</div>
+</div>
+
+<div class="content" id="content">  
+    <div class="klasik" id="klasik"> <span id="klasik-muzik">Klasik Müzik</span> 
+        <div class="yayin" id="klasik-radyo">
+            <select id="k-radyo" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+                <option value="#"> 📻 Radyo</option>
+                <option value="https://uk2.streamingpulse.com/ssl/vcr1">Venedik  </option>
+                <option value="https://vrt.streamabc.net/vrt-klaracontinuo-mp3-128-6851541?sABC=68868ono%230%23p1sr7s2s1q6800s53ro8opo2oo1pr21s%23&aw_0_1st.playerid=&amsparams=playerid:;skey:1753648043">Brüksel  </option>
+                <option value="https://ice-the.musicradio.com/ClassicFMMP3">Londra  </option>
+                <option value="https://listen.radioking.com/radio/228241/stream/271804">Montreal  </option>
+                 <option value="http://eskiweb.radyo.itu.edu.tr:8097/;">Istanbul  </option>
+            </select>
+
+            <select id="k-kompozitor" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+                <option value="#">🎼Besteciler</option>
+                <option value="https://klassikr.streamabc.net/klr-purebeethoven-mp3-128-1467988?sABC=68n07503%230%238904s52oss7q5p550rq5542pr9o08628%23&aw_0_1st.playerid=&amsparams=playerid:;skey:1755346179"> Beethoven  </option>
+                <option value="https://nl4.mystreaming.net/uber/crbrahms/icecast.audio"> Brahms  </option>
+                <option value="https://2.mystreaming.net/uber/crchopin/icecast.audio">Chopin  </option> 
+                <option value="https://2.mystreaming.net/uber/crdebussy/icecast.audio">Debussy  </option>
+                <option value="https://2.mystreaming.net/uber/crvanessamae/icecast.audio">Liszt  </option>
+                <option  value="https://2.mystreaming.net/uber/crmozart/icecast.audio">Mozart  </option>
+                <option value="https://air.radioart.com/fEric_satie.mp3">Erik Sati</option>                
+                <option value="https://2.mystreaming.net/uber/crschubert/icecast.audio">Schubert </option>
+                <option value="https://drive.uber.radio/uber/crandressegovia/icecast.audio">Andrés Segovia </option>
+                <option value="https://drive.uber.radio/uber/crsibelius/icecast.audio">Sibelius  </option>
+                <option value="https://drive.uber.radio/uber/crstravinsky/icecast.audio">Stravinsky  </option>
+                <option value="https://nl4.mystreaming.net/uber/crtchaikovsky/icecast.audio">Tchaikovski  </option>
+                <option value="http://streams.calmradio.com:8928/stream">Vivaldi  </option>               
+            </select>
+
+            <select id="k-entruman" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+                <option value="#">🎹 Enstrümanlar</option>
+                <option value="http://213.141.131.10:8000/classguitar">Gitar  </option>
+                <option value=" http://213.141.131.10:8000/harp">Harp  </option>
+                <option value="https://air.radioart.com/fViolin_works.mp3">Keman  </option>
+                <option value="http://213.141.131.10:8002/clarinet">Klarnet  </option>
+                <option value="https://air.radioart.com/fPiano.mp3">Piano  </option>
+            </select>
+
+            <select id="k-enterpret" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+                <option value="#">🗣️ Yorumcular</option>
+                <option value="https://drive.uber.radio/uber/crlanglang/icecast.audio">Lang Lang </option>
+                <option value="https://nl4.mystreaming.net/uber/crlucianopavarotti/icecast.audio">Pavorotti </option>
+                <option value="https://nl4.mystreaming.net/uber/crplacidodomingo/icecast.audio">Placido Domingo  </option>   
+            </select>
+        </div>
+    </div>
+
+    <div  class="jazz" id="jazz"> Jazz
+       <div class="yayin" id="jazz-radyo">
+       <select id="j-radyo" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+          <option value="#"> 📻 Radyo</option>
+          <option value="https://klassikr.streamabc.net/klr_5onrt7sbxhi_qq9e-mp3-192-1970067?sABC=688793pp%230%2351o8o106520ps20q37776q3788516r3q%23fgernz.xynffvxenqvb.qr&aw_0_1st.playerid=stream.klassikradio.de&amsparams=playerid:stream.klassikradio.de;skey:1753715660">Dinner Jazz </option>
+            <option value="http://79.120.77.11:8004/manouche">Gypsy Jazz</option>
+             <option value="https://air.radioart.com/fGypsy_jazz.mp3">French Gypsy Jazz</option>
+            <option value="http://79.111.119.111:8002/pianojazz">Piano Jazz </option>
+            <option value="http://79.120.39.202:9085/;">Cool Jazz </option>
+            <option value="https://radio4.vip-radios.fm:18060/stream-128kmp3-SmoothJazzLounge">Smooth Jazz </option>
+            <option value="https://livestreaming-node-4.srg-ssr.ch/srgssr/rsj/mp3/128">Jazz Room </option>
+           <option value="https://live.radioart.com/fGuitar_jazz.mp3">Guitar Jazz </option>
+
+            <option value=" https://fluxfm.streamabc.net/flx-vocaljazz-mp3-320-8988692?sABC=688797po%230%2351o8o106520ps20q37776q3788516r3q%23fgernzf.syhksz.qr&aw_0_1st.playerid=streams.fluxfm.de&amsparams=playerid:streams.fluxfm.de;skey:1753716683">Jazz voices</option>
+
+          </select>
+
+      <select id="j-enterpret" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+          <option value="#">🗣️ Yorumcular</option>
+          <option value="https://drive.uber.radio/uber/jjrbennygoodman/icecast.audio">Benny Goodman  </option>
+          <option value="https://drive.uber.radio/uber/jjrcharlieparker/icecast.audio">Charlie Parker </option>
+          <option value="https://drive.uber.radio/uber/jjrraycharles/icecast.audio">Ray Charles </option>
+          <option value="https://drive.uber.radio/uber/jjrbillieholiday/icecast.audio">Billie Holiday  </option>
+          <option value="https://nl4.mystreaming.net/uber/jjrcharlesmingus/icecast.audio">Charles Mingus </option>
+          <option value="https://nl4.mystreaming.net/uber/jjrbillevans/icecast.audio">Bill Evans </option>
+         
+      </select>
+   </div>
+   
+  </div>   
+  
+
+<div class="turk" id="turk"> <span id="turk-muzik">Türk müsikisi </span> 
+  <br>
+  <button onclick="window.open('https://www.trtdinle.com/channel/trt-nagme-turk-sanat-muzigi', '_blank');">
+ TRT Nağme, TRT3 dinle ..
+</button>
+    <div class="yayin" id="turk-radyo">
+       <select id="t-radyo" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+          <option value="#"> 📻  Radyo  </option>
+          <option value="https://yayin.turkhosted.com/4591/stream">Türkülerle Türkiye</option>
+          <option value="https://eu8.fastcast4u.com/proxy/ugur4129?mp=/1">Türkü Radyo </option>
+          <option value="http://95.0.173.195:9000/turku">Vatan Türkü</option>
+          <option value="https://yayin.radyoarabesk.com.tr:8000/stream">Arabesk FM </option>
+       </select>                 
+      <select id="t-enterpret" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+          <option value="#">🗣️ Yorumcular</option>
+      </select>
+   </div>
+ 
+    </div>
+   <div  class="nature" id="nature"><span id="nature-muzik">Tabiat Nameleri</span> 
+       <div class="yayin" id="nature-radyo">
+       <select id="n-radyo" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+          <option value="#">📻 Radyo</option>
+          <option value="https://nature-rex.radioca.st/stream">Nature Radio </option>>
+          <option value="https://stream1-epic-lounge.radiohost.de/nature-sounds?ref=radiobrowser">Nature Radio </option>>
+          <option value="https://ec3.yesstreaming.net:3545/stream">Nature Radio </option>
+        </select>
+
+      <select id="n-enterpret" onchange="playSelectedRadio(this)" onClick="playSelectedRadio(this)">
+          <option value="#">🎵 Relaxing </option>
+          <option value="http://nap.casthost.net:8793/stream"> Meditasyon </option>
+           <option value=" https://klassikr.streamabc.net/klr-healing-mp3-128-5794140?sABC=6887o549%230%2351o8o106520ps20q37776q3788516r3q%23jjj.xynffvxenqvb.qr&aw_0_1st.playerid=www.klassikradio.de&amsparams=playerid:www.klassikradio.de;skey:1753724233"> Detant </option>
+      </select>
+   </div>
+   
+  </div>  
+
+</div>
+<!-- Hidden audio player -->
+  <audio id="radio-player" controls style="display:none;"></audio>
+ <div id="copyright"> Kozeri Müzik V1.0 - 2025 &#x24B8;	 Deniz TULBENT</div>
+</body>
+</html>
+
+
+
+<script>
+function shutdown(){
+const radyom = document.getElementById("radio-player");
+radyom.pause();
+return;
+}
+function muzik_ayari(){ 
+if(document.getElementById("uyku").style.backgroundColor=="green"){  
+  document.getElementById("uyku").style.backgroundColor="#c94554"
+document.getElementById("uyku").style.display="none";
+document.getElementById("timerSelect").style.display="none";
+document.getElementById("timeSelect_button").style.display="none";
+shutdown();
+}
+else if(document.getElementById("uyku").style.backgroundColor=="orange"){
+document.getElementById("uyku").style.backgroundColor="#c94554";
+document.getElementById("uyku").style.display="none";
+document.getElementById("timerSelect").style.display="none";
+document.getElementById("timeSelect_button").style.display="none";
+document.getElementById('uyku').innerText = "Mûzikle uyu";
+}
+else{ 
+  const istasyon = document.getElementById("radio-player");
+  if (istasyon.src=="" || istasyon.paused){
+    
+    if (browserLanguage.startsWith('tr')||browserLanguage.startsWith('tr-TR')) {alert(" Lütfen müzik seçiniz");}
+    else if (browserLanguage.startsWith('fr-FR') || browserLanguage.startsWith('fr')) {alert(" Actuellement vous n'écoutez pas de musique, merci de faire votre choix !");}
+    else {alert(" You are not currently listening to music, please make your choice !");}
+  }
+
+document.getElementById("timerSelect").style.display="inline-block";
+document.getElementById("timeSelect_button").style.display="inline-block";
+document.getElementById("uyku").style.backgroundColor="orange";
+document.getElementById("uyku").style.display="inline-block";
+if (browserLanguage.startsWith('tr') || browserLanguage.startsWith('tr-TR')) {document.getElementById('uyku').innerText = "Zamanlayıcı ayarı";}
+else if(browserLanguage.startsWith('fr-FR') || browserLanguage.startsWith('fr')) {document.getElementById('uyku').innerText = "Configurer la minuterie pour";}
+else {document.getElementById('uyku').innerText = "Set up the timer for";}
+
+}
+
+}
+let timerId;
+function startSleepTimer() {
+ 
+      clearTimeout(timerId);
+
+      const select = document.getElementById("timerSelect");
+      const minutes = parseInt(select.value);
+
+      const durationMs = minutes * 60 * 1000;
+
+      timerId = setTimeout(function() {
+        
+        const audio = document.getElementById("radio-player");
+        audio.pause();
+        audio.currentTime = 0;
+        alert("Müzik " + minutes + " dakka sonra durduruldu.");
+        document.getElementById("uyku").style.backgroundColor="#c94554";
+        document.getElementById("uyku").style.display="none";
+        document.getElementById('uyku').innerText = "Mûzikle uyu";
+      }, durationMs);
+
+       // alert("Zamanlayıcı uyku için " + minutes + " dakkaya ayarlandi .");
+        document.getElementById("timerSelect").style.display="none";
+        document.getElementById("timeSelect_button").style.display="none";
+        document.getElementById("uyku").style.backgroundColor="green";
+        
+if (browserLanguage.startsWith('tr') ||browserLanguage.startsWith('tr-TR')) {document.getElementById('uyku').innerText = minutes+" dakka içinde Mûzikle iyi uykular";}
+else if (browserLanguage.startsWith('fr-FR') || browserLanguage.startsWith('fr')) {document.getElementById('uyku').innerText = "Dormez bien avec de la musique en "+minutes+" minutes";}
+else {document.getElementById('uyku').innerText ="Sleep well with music in "+ minutes+" minutes";}
+
+
+    }
+
+function playSelectedRadio(selectElement) {
+    const url = selectElement.value;
+    const player = document.getElementById('radio-player');
+    if (url && url !== '#') {
+      player.src = url;
+      player.play();
+      player.style.display = 'none';
+    } else {
+      player.pause();
+      player.src = '';
+      player.style.display = 'none';
+    }
+  }
+
+    
+
+
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+function getDeviceOrientation() {
+  if (window.screen.orientation) {
+    return window.screen.orientation.type; // e.g., 'portrait-primary', 'landscape-primary'
+  } else {
+    return (window.innerHeight > window.innerWidth) ? 'portrait' : 'landscape';
+  }
+}
+
+if (isMobile()) { 
+  var oriantasyon=getDeviceOrientation();
+  // Smartphone ve Tablet için
+  if (oriantasyon=="landscape-primary") {
+  document.documentElement.style.width = '50vw';
+  document.getElementById("turk").style.width="50vw";
+  document.getElementById("jazz").style.width="50vw";
+  document.getElementById("klasik").style.width="50vw";
+  document.getElementById("nature").style.width="50vw";
+  }
+} 
+// PC desktop için
+else {
+ 
+  document.documentElement.style.width = '30vw';
+  document.getElementById("turk").style.width="30vw";
+  document.getElementById("jazz").style.width="30vw";
+  document.getElementById("klasik").style.width="30vw";
+  document.getElementById("nature").style.width="30vw";
+}
+
+//****** Yön degistirme isleri *******
+window.addEventListener('orientationchange', function() {
+  if(window.orientation=='90' || window.orientation=='-90'){
+    document.documentElement.style.width = '50vw';
+    document.getElementById("turk").style.width="50vw";
+    document.getElementById("jazz").style.width="50vw";
+    document.getElementById("klasik").style.width="50vw";
+    document.getElementById("nature").style.width="50vw";
+  }
+  else {
+    document.documentElement.style.width = '100vw';
+    document.getElementById("turk").style.width="100vw";
+    document.getElementById("jazz").style.width="100vw";
+    document.getElementById("klasik").style.width="100vw";
+    document.getElementById("nature").style.width="100vw";
+  }
+});
+// Get the browser's main language
+let browserLanguage = navigator.language || navigator.userLanguage;
+console.log("Browser language:", browserLanguage);
+
+// Example: Use it to show content based on language
+if (browserLanguage.startsWith('tr') || browserLanguage.startsWith('tr-TR')) {
+    console.log("Show Turkish content");
+} 
+
+else if (browserLanguage.startsWith('fr-FR') || browserLanguage.startsWith('fr')) {
+    console.log(document.getElementById("hosgeldiniz").innerText);
+    document.getElementById("hosgeldiniz").innerText="Bienvenue à Kozeri Musique";
+  const select = document.getElementById("timerSelect");
+  for (let i = 0; i < select.options.length; i++) {
+    select.options[i].text = select.options[i].text.replace("dakka müzik", "minutes de musique");
+  }
+  document.getElementById("shutdown-bt").title="Arrêter la musique !";
+  document.getElementById("sleeping-bt").title="S'endormir avec la musique !";
+  document.getElementById("klasik-muzik").innerText="Musique Classique";
+  document.getElementById("turk-muzik").innerText="Musique Turque";
+  document.getElementById("nature-muzik").innerText=" Musique de la nature";
+  document.getElementById("timeSelect_button").innerText="OK";
+  
+  
+  document.getElementById("k-radyo").options[0].text=document.getElementById("k-radyo").options[0].text.replace("Radyo", "Radio");
+  document.getElementById("k-radyo").options[1].text=document.getElementById("k-radyo").options[1].text.replace("Venedik", "Venise");
+  document.getElementById("k-radyo").options[2].text=document.getElementById("k-radyo").options[2].text.replace("Brüksel", "Bruxelles");
+  document.getElementById("k-radyo").options[3].text=document.getElementById("k-radyo").options[3].text.replace("Londra", "Londres");
+
+
+  document.getElementById("j-radyo").options[0].text=document.getElementById("j-radyo").options[0].text.replace("Radyo", "Radio");
+  document.getElementById("t-radyo").options[0].text=document.getElementById("t-radyo").options[0].text.replace("Radyo", "Radio");
+  document.getElementById("n-radyo").options[0].text=document.getElementById("n-radyo").options[0].text.replace("Radyo", "Radio");
+
+  document.getElementById("k-kompozitor").options[0].text=document.getElementById("k-kompozitor").options[0].text.replace("Besteciler", "Compositeurs");
+  
+  document.getElementById("k-entruman").options[0].text=document.getElementById("k-entruman").options[0].text.replace("Enstrümanlar", "Instruments");
+  document.getElementById("k-entruman").options[1].text=document.getElementById("k-entruman").options[1].text.replace("Keman", "Violon");
+  document.getElementById("k-entruman").options[2].text=document.getElementById("k-entruman").options[2].text.replace("Klarnet", "Clarinette");
+  document.getElementById("k-entruman").options[4].text=document.getElementById("k-entruman").options[4].text.replace("Gitar", "Guitare");
+
+  document.getElementById("k-enterpret").options[0].text=document.getElementById("k-enterpret").options[0].text.replace("Yorumcular", "Interprètes");
+  document.getElementById("j-enterpret").options[0].text=document.getElementById("j-enterpret").options[0].text.replace("Yorumcular", "Interprètes");
+  document.getElementById("t-enterpret").options[0].text=document.getElementById("t-enterpret").options[0].text.replace("Yorumcular", "Interprètes");
+  document.getElementById("n-enterpret").options[1].text=document.getElementById("n-enterpret").options[1].text.replace("Meditasyon", "Meditation");
+  document.getElementById("n-enterpret").options[2].text=document.getElementById("n-enterpret").options[2].text.replace("Detant", "Detente");
+
+
+} 
+
+else {
+  console.log(document.getElementById("hosgeldiniz").innerText);
+  document.getElementById("hosgeldiniz").innerText="Welcome to Kozeri Music";
+  const select = document.getElementById("timerSelect");
+  for (let i = 0; i < select.options.length; i++) {
+    select.options[i].text = select.options[i].text.replace("dakka müzik", "minutes of music");
+  }
+  document.getElementById("shutdown-bt").title="Stop the music !";
+  document.getElementById("sleeping-bt").title="Sleep with music !";
+  document.getElementById("klasik-muzik").innerText="Classical Music";
+  document.getElementById("turk-muzik").innerText="Turkish Music";
+  document.getElementById("nature-muzik").innerText=" Music of nature";
+  document.getElementById("timeSelect_button").innerText="OK";
+  
+  
+  document.getElementById("k-radyo").options[0].text=document.getElementById("k-radyo").options[0].text.replace("Radyo", "Radio");
+  document.getElementById("k-radyo").options[1].text=document.getElementById("k-radyo").options[1].text.replace("Venedik", "Venice");
+  document.getElementById("k-radyo").options[2].text=document.getElementById("k-radyo").options[2].text.replace("Brüksel", "Brussels");
+  document.getElementById("k-radyo").options[3].text=document.getElementById("k-radyo").options[3].text.replace("Londra", "London");
+
+
+  document.getElementById("j-radyo").options[0].text=document.getElementById("j-radyo").options[0].text.replace("Radyo", "Radio");
+  document.getElementById("t-radyo").options[0].text=document.getElementById("t-radyo").options[0].text.replace("Radyo", "Radio");
+  document.getElementById("n-radyo").options[0].text=document.getElementById("n-radyo").options[0].text.replace("Radyo", "Radio");
+
+  document.getElementById("k-kompozitor").options[0].text=document.getElementById("k-kompozitor").options[0].text.replace("Besteciler", "Composers");
+  
+  document.getElementById("k-entruman").options[0].text=document.getElementById("k-entruman").options[0].text.replace("Enstrümanlar", "Instruments");
+  document.getElementById("k-entruman").options[1].text=document.getElementById("k-entruman").options[1].text.replace("Keman", "Violon");
+  document.getElementById("k-entruman").options[2].text=document.getElementById("k-entruman").options[2].text.replace("Klarnet", "Clarinet");
+  document.getElementById("k-entruman").options[4].text=document.getElementById("k-entruman").options[4].text.replace("Gitar", "Guitar");
+
+  document.getElementById("k-enterpret").options[0].text=document.getElementById("k-enterpret").options[0].text.replace("Yorumcular", "Performers");
+  document.getElementById("j-enterpret").options[0].text=document.getElementById("j-enterpret").options[0].text.replace("Yorumcular", "Performers");
+  document.getElementById("t-enterpret").options[0].text=document.getElementById("t-enterpret").options[0].text.replace("Yorumcular", "Performers");
+  document.getElementById("n-enterpret").options[1].text=document.getElementById("n-enterpret").options[1].text.replace("Meditasyon", "Meditation");
+  document.getElementById("n-enterpret").options[2].text=document.getElementById("n-enterpret").options[2].text.replace("Detant", "Relaxation");
+}
+
+</script>
